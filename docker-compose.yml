@@ -1,0 +1,39 @@
+versi: '3.8'
+
+jasa:
+  sayap:
+    gambar: ghcr.io/pterodactyl/wings:v1.6.1
+    mulai ulang: selalu
+    jaringan:
+      - sayap0
+    pelabuhan:
+      - "8080:8080"
+      - "2022:2022"
+      - "443:443"
+    tty: benar
+    lingkungan:
+      Bahasa Indonesia: "UTC"
+      SAYAP_UID: 988
+      SAYAP_ID: 988
+      NAMA_PENGGUNA WINGS: pterodactyl
+    volume:
+      - "/var/run/docker.sock:/var/run/docker.sock"
+      - "/var/lib/docker/containers/:/var/lib/docker/containers/"
+      - "/etc/pterodactyl/:/etc/pterodactyl/"
+      - "/var/lib/pterodactyl/:/var/lib/pterodactyl/"
+      - "/var/log/pterodactyl/:/var/log/pterodactyl/"
+      - "/tmp/pterodactyl/:/tmp/pterodactyl/"
+      - "/etc/ssl/sertifikat:/etc/ssl/sertifikat:ro"
+      # Anda mungkin memerlukan /srv/daemon-data jika Anda melakukan upgrade dari daemon lama
+      #- "/srv/data-daemon/:/srv/data-daemon/"
+      # Diperlukan untuk ssl jika Anda menggunakan lets's encrypt. batalkan komentar untuk digunakan.
+      #- "/etc/letsencrypt/:/etc/letsencrypt/"
+jaringan:
+  sayap0:
+    nama: wings0
+    pengemudi: jembatan
+    ipam:
+      konfigurasi:
+        - jaringan: "172.21.0.0/16"
+    pilihan_pengemudi:
+      com.docker.network.bridge.nama: wing0
